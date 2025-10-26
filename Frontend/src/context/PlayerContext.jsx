@@ -9,7 +9,7 @@ export const PlayerContext =createContext();
     const seekBg =useRef();
     const seekBar =useRef();
 
-    const url = 'http://localhost:4000';
+    const url = 'https://spotify-project-backend-hznr.onrender.com';
 
     const [songsData,setSongData] = useState([]);
     const [albumsData,setAlbumData] = useState([]);
