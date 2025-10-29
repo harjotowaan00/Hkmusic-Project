@@ -5,3 +5,12 @@
 ::-webkit-scrollbar{
     display: none;
 }
+
+/* Green tint when shuffle is active */
+.shuffle-active {
+  filter: invert(61%) sepia(73%) saturate(382%) hue-rotate(85deg) brightness(95%) contrast(94%);
+}
+.loop-active {
+  filter: invert(61%) sepia(73%) saturate(382%) hue-rotate(85deg) brightness(95%) contrast(94%);
+}
+
