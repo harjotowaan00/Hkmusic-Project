@@ -20,7 +20,7 @@ const Navbar = () => {
         </div>
 
         <div className='flex items-center gap-4'>
-          <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer'>𝓱𝓴𝓶𝓾𝓼𝓲𝓬</p>
+          <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl md:block cursor-pointer'>𝓱𝓴𝓶𝓾𝓼𝓲𝓬</p>
           <p className='bg-purple-500 text-black w-7 h-7 rounded-full flex items-center justify-center'>K</p>
         </div>
       </div>
