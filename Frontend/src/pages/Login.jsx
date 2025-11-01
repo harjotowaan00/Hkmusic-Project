@@ -11,7 +11,7 @@ const Login = ({ onLogin }) => {
     e.preventDefault(); 
 
     try {
-      const res = await axios.post("http://localhost:4000/api/user/login", { email, password });
+      const res = await axios.post("https://spotify-project-backend-hznr.onrender.com/api/user/login", { email, password });
 
       if (res.data.success) {
         
