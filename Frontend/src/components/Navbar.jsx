@@ -17,6 +17,9 @@ const Navbar = () => {
     localStorage.removeItem("role");
     window.location.href = "/login";
   };
+  const goToMyPlaylist = () => {
+    navigate('/my-playlist');
+  };
 
   return (
     <>
@@ -24,28 +27,35 @@ const Navbar = () => {
 
 
 
-        <div className='flex items-center gap-2 '>
+        <div className='flex flex-col items-start gap-2'>
           <div className='flex items-center gap-2'>
             <img onClick={() => navigate(-1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer' src={assets.arrow_left} alt="" />
             <img onClick={() => navigate(1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer' src={assets.arrow_right} alt="" />
           </div>
           {isHome && (
-            <div className='flex'>
-              <p onClick={() => setFilter("all")} className={`px-4 py-1 rounded-2xl cursor-pointer ${filter === "all" ? "bg-white text-black" : "bg-black text-white"}`}>All</p>
-              <p onClick={() => setFilter("music")} className={`px-4 py-1 rounded-2xl cursor-pointer ${filter === "music" ? "bg-white text-black" : "bg-black text-white"}`}>Music</p>
-              <p onClick={() => setFilter("albums")} className={`px-4 py-1 rounded-2xl cursor-pointer ${filter === "albums" ? "bg-white text-black" : "bg-black text-white"}`}>Albums</p>
-
+            <div className='flex gap-2 mt-2'>
+              <p onClick={() => setFilter("all")}
+                className={`px-4 py-1 rounded-2xl cursor-pointer ${filter === "all" ? "bg-white text-black" : "bg-black text-white"}`}>
+                All
+              </p>
+              <p onClick={() => setFilter("music")}
+                className={`px-4 py-1 rounded-2xl cursor-pointer ${filter === "music" ? "bg-white text-black" : "bg-black text-white"}`}>
+                Music
+              </p>
+              <p onClick={() => setFilter("albums")}
+                className={`px-4 py-1 rounded-2xl cursor-pointer ${filter === "albums" ? "bg-white text-black" : "bg-black text-white"}`}>
+                Albums
+              </p>
             </div>
           )}
         </div>
 
 
-        <div className='flex items-center gap-4'>
-          {localStorage.getItem("role") === "admin" && (
-            <a href="/admin" className="text-white hover:text-purple-400">Admin Panel</a>
-          )}
 
-          <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl md:block cursor-pointer'>𝓱𝓴𝓶𝓾𝓼𝓲𝓬</p>
+        <div className='flex items-center gap-4'>
+
+
+          <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl md:block cursor-pointer hidden lg:block'>𝓱𝓴𝓶𝓾𝓼𝓲𝓬</p>
 
           {/* PROFILE DROPDOWN */}
           <div className="relative">
@@ -57,6 +67,17 @@ const Navbar = () => {
 
             {menuOpen && (
               <div className="absolute right-0 mt-2 w-36 bg-neutral-900 border border-neutral-700 rounded-xl shadow-xl p-2 animate-fadeIn">
+
+                <button
+                  onClick={goToMyPlaylist}
+                  className="text-white px-3 py-2 hover:bg-neutral-800 rounded-md cursor-pointer"
+                >
+                  My Playlist
+                </button>
+
+                {localStorage.getItem("role") === "admin" && (
+                  <a href="/admin" className="text-white px-3 py-2 hover:bg-neutral-800 rounded-md cursor-pointer">Admin Panel</a>
+                )}
                 <p className="text-white px-3 py-2 hover:bg-neutral-800 rounded-md cursor-pointer" onClick={handleLogout}>
                   Sign Out
                 </p>
