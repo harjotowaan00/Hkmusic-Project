@@ -13,4 +13,13 @@
 .loop-active {
   filter: invert(61%) sepia(73%) saturate(382%) hue-rotate(85deg) brightness(95%) contrast(94%);
 }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-in-out;
+}
+
 

@@ -5,6 +5,10 @@ import songRouter from './src/routes/songRoute.js';
 import connectDB from './src/config/mongodb.js';
 import connectCloudinary from './src/config/cloudinary.js';
 import albumRouter from './src/routes/albumRoute.js';
+import userRoutes from "./src/routes/userRoutes.js";
+
+
+
 
 // app config
 const app = express();
@@ -18,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 // initializing routes
+app.use("/api/user", userRoutes);
 app.use("/api/song",songRouter)
 app.use("/api/album",albumRouter)
 
