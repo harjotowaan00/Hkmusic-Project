@@ -11,7 +11,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/api/user/register", {
+      const res = await axios.post("https://spotify-project-backend-hznr.onrender.com/api/user/register", {
         name,
         email,
         password,
