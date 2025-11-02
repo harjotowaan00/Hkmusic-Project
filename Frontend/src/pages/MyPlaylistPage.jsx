@@ -8,9 +8,10 @@ const MyPlaylistPage = () => {
 
   return (
     <>
+    <div className='bg-[#121212]'>
       <Navbar />
 
-      <div className="mt-10 flex gap-8 flex-col md:flex-row md:items-end">
+      <div className="mt-10 flex gap-8 flex-col md:flex-row md:items-end ">
         <img src={assets.MyPlaylistImg} alt="My Playlist" className="w-48 h-48 object-cover rounded " />
         <div className="flex flex-col text-white">
 
@@ -61,6 +62,7 @@ const MyPlaylistPage = () => {
           </div>
         ))
       )}
+    </div>
     </>
   );
 };
