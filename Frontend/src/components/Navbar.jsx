@@ -76,7 +76,10 @@ const Navbar = () => {
                 </button>
 
                 {localStorage.getItem("role") === "admin" && (
-                  <a href="/admin" className="text-white px-3 py-2 hover:bg-neutral-800 rounded-md cursor-pointer">Admin Panel</a>
+                  <button className="text-white px-3 py-2 hover:bg-neutral-800 rounded-md cursor-pointer" onClick={() => window.open('https://spotify-project-admin-panel.onrender.com', '_blank')}>
+                    Admin Panel
+                  </button>
+
                 )}
                 <p className="text-white px-3 py-2 hover:bg-neutral-800 rounded-md cursor-pointer" onClick={handleLogout}>
                   Sign Out
