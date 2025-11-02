@@ -6,8 +6,8 @@ const Sidebar = () => {
     return (
         <div className='bg-[#003A10] min-h-screen pl-[4vw]'>
 
-            <img src={assets.logo} className='mt-5 w-[max(10vw,100px)] hidden sm:block' alt="" />
-            <img src={assets.logo_small} className='mt-5 w-[max(5vw,40px)] mr-5 sm:hidden block' alt="" />
+            <p className=' text-white text-[25px] px-4 py-1 rounded-2xl md:block cursor-pointer hidden lg:block mt-5'>𝓱𝓴𝓶𝓾𝓼𝓲𝓬</p>
+
 
             <div className='flex flex-col gap-5 mt-10'>
 
