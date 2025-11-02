@@ -1,11 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { assets, } from '../assets/assets';
 import { PlayerContext } from '../context/PlayerContext';
 
 
 
 const Player = () => {
-  const { track, seekBar, seekBg, playStatus, play, pause, time, previous, next, seekSong, isLoop, toggleLoop, isShuffle, toggleShuffle } = useContext(PlayerContext);
+  const { track, seekBar, seekBg, playStatus, play, pause, time, previous, next, seekSong, isLoop, toggleLoop, isShuffle, toggleShuffle, volume,
+    setVolumeDirect } = useContext(PlayerContext)
+
+
+  const onVolumeChange = (e) => setVolumeDirect(parseFloat(e.target.value));
+
   return track ? (
     <div className='h-[10%] bg-black flex justify-between items-center text-white px-4'>
       <div className=' hidden lg:flex items-center gap-4'>
@@ -54,16 +59,21 @@ const Player = () => {
         </div>
       </div>
       <div className='hidden lg:flex items-center gap-2 opacity-75'>
-        <img className='w-4 ' src={assets.plays_icon} alt="" />
-        <img className='w-4 ' src={assets.mice_icon} alt="" />
-        <img className='w-4 ' src={assets.queue_icon} alt="" />
-        <img className='w-4 ' src={assets.speaker_icon} alt="" />
-        <img className='w-4 ' src={assets.volume_icon} alt="" />
-        <div className='w-20 bg-slate-50 h-1 rounded'>
 
+        <div className='relative cursor-pointer flex items-center gap-2'>
+          <img className='w-4' src={assets.volume_icon} alt="Volume" />
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={volume}
+            onChange={onVolumeChange}
+            className="w-24 h-1 accent-green-400 rounded"
+          />
         </div>
-        <img className='w-4 ' src={assets.mini_player_icon} alt="" />
-        <img className='w-4 ' src={assets.zoom_icon} alt="" />
+
+
 
       </div>
     </div>

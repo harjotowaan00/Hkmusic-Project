@@ -36,6 +36,9 @@ const PlayerContextProvider = (props) => {
   const [filter, setFilter] = useState("all");
   const [queue, setQueue] = useState([]);
 
+  // Volume state: from 0.0 to 1.0
+  const [volume, setVolume] = useState(1);
+
   const [myPlaylist, setMyPlaylist] = useState(() => {
     const saved = localStorage.getItem("myPlaylist");
     return saved ? JSON.parse(saved) : [];
@@ -68,12 +71,11 @@ const PlayerContextProvider = (props) => {
       return newLoop;
     });
   };
-  
+
   const toggleShuffle = useCallback(() => {
     setIsShuffle(prev => {
       const newShuffle = !prev;
       if (newShuffle) {
-        // Shuffle queue but keep current track on top
         setQueue(prevQueue => {
           const shuffled = shuffleArray(prevQueue);
           return ensureTrackFirst(shuffled, track);
@@ -115,18 +117,12 @@ const PlayerContextProvider = (props) => {
 
   const next = useCallback(() => {
     if (!track) return;
-    if (isShuffle && queue.length > 0) {
-      const randomIndex = Math.floor(Math.random() * queue.length);
-      setTrack(queue[randomIndex]);
-      setPlayStatus(true);
-    } else {
-      const currentIndex = queue.findIndex(item => item._id === track._id);
-      let nextIndex = currentIndex + 1;
-      if (nextIndex >= queue.length) nextIndex = 0;
-      setTrack(queue[nextIndex]);
-      setPlayStatus(true);
-    }
-  }, [queue, track, isShuffle]);
+    const currentIndex = queue.findIndex(item => item._id === track._id);
+    let nextIndex = currentIndex + 1;
+    if (nextIndex >= queue.length) nextIndex = 0;
+    setTrack(queue[nextIndex]);
+    setPlayStatus(true);
+  }, [queue, track]);
 
   // Seek function - jumping to specific time in the track
   const seekSong = (e) => {
@@ -138,6 +134,19 @@ const PlayerContextProvider = (props) => {
       audioRef.current.currentTime = (clickX / width) * duration;
     }
   };
+
+
+  const setVolumeDirect = useCallback((val) => {
+    const volumeVal = Math.min(1, Math.max(0, val));
+    setVolume(volumeVal);
+  }, []);
+
+  // Sync volume state to audio element
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
 
   // Effects for side effects and data fetch
   useEffect(() => {
@@ -261,6 +270,8 @@ const PlayerContextProvider = (props) => {
     removeFromMyPlaylist,
     queue,
     setQueue,
+    volume,
+    setVolumeDirect
   };
 
   return (
